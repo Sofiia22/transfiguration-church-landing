@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { type CSSProperties, type FormEvent, useEffect, useState } from "react";
 import {
   FaChurch,
   FaGlobeAmericas,
@@ -115,6 +115,8 @@ const translations = {
   },
 };
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export default function Home() {
   const [language, setLanguage] = useState<Language>("en");
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -141,7 +143,14 @@ export default function Home() {
   }
 
   return (
-    <main className="site-shell">
+    <main
+      className="site-shell"
+      style={
+        {
+          "--mountain-image": `url("${basePath}/mountain-sky.png")`,
+        } as CSSProperties
+      }
+    >
       <section className="hero">
         <div className="language-switcher" aria-label="Select language">
           {(["en", "uk", "ru"] as Language[]).map((item) => (
@@ -158,7 +167,7 @@ export default function Home() {
 
         <img
           className="church-logo"
-          src="/transfiguration-logo.png"
+          src={`${basePath}/transfiguration-logo.png`}
           alt="Transfiguration Slavic Baptist Church logo"
         />
 
@@ -339,7 +348,7 @@ export default function Home() {
             </button>
 
             <img
-              src="/transfiguration-logo.png"
+              src={`${basePath}/transfiguration-logo.png`}
               alt=""
               className="modal-logo"
             />

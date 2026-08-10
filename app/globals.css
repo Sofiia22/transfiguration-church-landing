@@ -22,9 +22,7 @@ html {
 
 body {
   margin: 0;
-  background:
-    linear-gradient(rgba(234, 246, 255, 0.55), rgba(255, 255, 255, 0.92)),
-    url("/mountain-sky.png") center top / cover fixed;
+  background: #eef7ff;
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -49,6 +47,9 @@ textarea:focus-visible {
 .site-shell {
   width: 100%;
   min-height: 100vh;
+  background:
+    linear-gradient(rgba(234, 246, 255, 0.55), rgba(255, 255, 255, 0.92)),
+    var(--mountain-image) center top / cover fixed;
 }
 
 .hero {
@@ -65,7 +66,7 @@ textarea:focus-visible {
       rgba(255, 255, 255, 0.38) 72%,
       #f8fbff 100%
     ),
-    url("/mountain-sky.png") center top / cover no-repeat;
+    var(--mountain-image) center top / cover no-repeat;
   overflow: hidden;
 }
 
@@ -445,7 +446,7 @@ textarea:focus-visible {
   border-radius: 24px;
   background:
     linear-gradient(90deg, rgba(8, 38, 84, 0.9), rgba(32, 86, 150, 0.7)),
-    url("/mountain-sky.png") center 42% / cover;
+    var(--mountain-image) center 42% / cover;
   color: white;
   text-align: center;
   box-shadow: 0 16px 30px rgba(8, 38, 84, 0.18);
@@ -616,7 +617,7 @@ textarea:focus-visible {
 }
 
 @media (max-width: 760px) {
-  body {
+  .site-shell {
     background-attachment: scroll;
   }
 
