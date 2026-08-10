@@ -1,0 +1,790 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #0d2c67;
+  --navy-dark: #071d47;
+  --blue: #315f9f;
+  --soft-blue: #e9f3ff;
+  --gold: #d5aa4d;
+  --text: #1e3867;
+  --muted: #617391;
+  --white: #ffffff;
+  --shadow: 0 18px 50px rgba(24, 61, 111, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(rgba(234, 246, 255, 0.55), rgba(255, 255, 255, 0.92)),
+    url("/mountain-sky.png") center top / cover fixed;
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(213, 170, 77, 0.75);
+  outline-offset: 3px;
+}
+
+.site-shell {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.hero {
+  position: relative;
+  min-height: 570px;
+  padding: 35px 24px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(220, 241, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.38) 72%,
+      #f8fbff 100%
+    ),
+    url("/mountain-sky.png") center top / cover no-repeat;
+  overflow: hidden;
+}
+
+.language-switcher {
+  position: absolute;
+  top: 28px;
+  right: max(28px, calc((100vw - 1100px) / 2));
+  z-index: 2;
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 999px;
+  background: rgba(247, 251, 255, 0.82);
+  box-shadow: 0 10px 30px rgba(30, 73, 130, 0.16);
+  backdrop-filter: blur(14px);
+}
+
+.language-switcher button {
+  min-width: 62px;
+  padding: 11px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--navy);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.language-switcher button:hover {
+  transform: translateY(-1px);
+}
+
+.language-switcher button.active {
+  color: var(--white);
+  background: linear-gradient(135deg, #315f9f, var(--navy));
+  box-shadow: 0 5px 14px rgba(13, 44, 103, 0.24);
+}
+
+.church-logo {
+  width: clamp(190px, 24vw, 285px);
+  height: auto;
+  margin-top: 35px;
+  border-radius: 50%;
+  filter: drop-shadow(0 15px 25px rgba(17, 47, 91, 0.25));
+}
+
+.hero-copy {
+  max-width: 900px;
+  margin-top: 18px;
+  text-align: center;
+}
+
+.hero-copy p {
+  margin: 0 0 20px;
+  color: #7a879d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.1rem, 5vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-copy h1 {
+  max-width: 850px;
+  margin: 0 auto;
+  color: var(--navy);
+  font-size: clamp(1.15rem, 2.4vw, 2rem);
+  line-height: 1.3;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.gold-line {
+  display: block;
+  width: 130px;
+  height: 2px;
+  margin: 22px auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.content-card {
+  position: relative;
+  z-index: 3;
+  width: min(100% - 32px, 1040px);
+  margin: -72px auto 48px;
+  padding: clamp(24px, 5vw, 58px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 38px;
+  background: rgba(249, 252, 255, 0.9);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.section-heading {
+  margin-bottom: 26px;
+  text-align: center;
+}
+
+.section-heading p {
+  margin: 0 0 8px;
+  color: var(--navy);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #344f79;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  font-weight: 400;
+}
+
+.services {
+  display: grid;
+  gap: 16px;
+}
+
+.service-row {
+  display: grid;
+  grid-template-columns: 84px 1fr auto;
+  align-items: center;
+  gap: 24px;
+  min-height: 120px;
+  padding: 18px 28px;
+  border: 1px solid rgba(216, 230, 246, 0.8);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 12px 30px rgba(39, 77, 125, 0.1);
+}
+
+.service-icon {
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #f4f9ff, #dcecff);
+  color: var(--navy);
+  font-size: 2.25rem;
+}
+
+.service-name {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.service-name strong {
+  color: var(--navy-dark);
+  font-size: 1.22rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.service-name span {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.service-time {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-left: 28px;
+  border-left: 1px solid #dce6f2;
+  white-space: nowrap;
+}
+
+.service-time strong {
+  color: var(--navy-dark);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.3rem, 7vw, 5.2rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.service-time span {
+  color: var(--navy-dark);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.3rem;
+}
+
+.directions-button {
+  width: 100%;
+  min-height: 100px;
+  margin-top: 24px;
+  padding: 20px 30px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  text-decoration: none;
+  gap: 20px;
+  border: 0;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #1d4c91, var(--navy-dark));
+  color: var(--white);
+  box-shadow: 0 16px 28px rgba(7, 29, 71, 0.22);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.directions-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 36px rgba(7, 29, 71, 0.28);
+}
+
+.directions-button .large-icon {
+  width: 30px;
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.directions-button strong,
+.directions-button small {
+  display: block;
+}
+
+.directions-button strong {
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.directions-button small {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.95rem;
+}
+
+.directions-button .arrow {
+  font-size: 1.8rem;
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.link-card {
+  min-height: 126px;
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid rgba(219, 230, 242, 0.8);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 10px 24px rgba(39, 77, 125, 0.09);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+  text-decoration: none;
+}
+
+.link-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 30px rgba(39, 77, 125, 0.14);
+}
+
+.link-card strong {
+  color: var(--navy-dark);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.link-card small {
+  max-width: 100%;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.link-icon {
+  color: #2256a0;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.youtube-icon {
+  color: #ff1d1d;
+}
+
+.instagram-icon {
+  color: #c72da6;
+}
+
+.phone-icon {
+  color: #5ebc55;
+}
+
+.website-icon {
+  color: #2256a0;
+}
+
+.email-icon {
+  color: #ea4335;
+}
+
+.question-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 50%;
+  background: #2975e8;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.about-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 22px;
+  margin-top: 20px;
+  padding: 28px;
+  border: 1px solid rgba(219, 230, 242, 0.8);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 10px 24px rgba(39, 77, 125, 0.09);
+}
+
+.about-icon {
+  display: grid;
+  width: 86px;
+  height: 86px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffffff, #e7f1fb);
+  color: var(--gold);
+  box-shadow: 0 10px 22px rgba(40, 74, 117, 0.13);
+  font-size: 3rem;
+}
+
+.about-card h3 {
+  margin: 0 0 7px;
+  color: var(--navy);
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.about-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.closing-card {
+  position: relative;
+  margin-top: 20px;
+  padding: 36px 20px;
+  border-radius: 24px;
+  background:
+    linear-gradient(90deg, rgba(8, 38, 84, 0.9), rgba(32, 86, 150, 0.7)),
+    url("/mountain-sky.png") center 42% / cover;
+  color: white;
+  text-align: center;
+  box-shadow: 0 16px 30px rgba(8, 38, 84, 0.18);
+  overflow: hidden;
+}
+
+.closing-card h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.8rem, 5vw, 3.25rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.closing-card p {
+  margin: 6px 0;
+  font-size: 1.2rem;
+}
+
+.closing-card span {
+  color: #f2c965;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(6, 22, 53, 0.65);
+  backdrop-filter: blur(8px);
+  animation: fade-in 180ms ease-out;
+}
+
+.contact-modal {
+  position: relative;
+  width: min(100%, 540px);
+  max-height: calc(100vh - 40px);
+  padding: 34px;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 28px;
+  background: rgba(249, 252, 255, 0.98);
+  box-shadow: 0 30px 80px rgba(3, 18, 45, 0.35);
+  animation: modal-in 220ms ease-out;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #e7f0fb;
+  color: var(--navy);
+  font-size: 1.65rem;
+  cursor: pointer;
+}
+
+.modal-logo {
+  display: block;
+  width: 105px;
+  height: 105px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  filter: drop-shadow(0 8px 16px rgba(17, 47, 91, 0.2));
+}
+
+.contact-modal h2 {
+  margin: 0 0 10px;
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.contact-modal > p {
+  margin: 0 auto 24px;
+  color: var(--muted);
+  line-height: 1.55;
+  text-align: center;
+}
+
+.contact-modal form {
+  display: grid;
+  gap: 16px;
+}
+
+.contact-modal label {
+  display: grid;
+  gap: 7px;
+}
+
+.contact-modal label span {
+  color: var(--navy-dark);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.contact-modal input,
+.contact-modal textarea {
+  width: 100%;
+  border: 1px solid #cddced;
+  border-radius: 13px;
+  background: white;
+  color: var(--navy-dark);
+}
+
+.contact-modal input {
+  height: 48px;
+  padding: 0 14px;
+}
+
+.contact-modal textarea {
+  padding: 13px 14px;
+  resize: vertical;
+}
+
+.contact-modal form button {
+  min-height: 52px;
+  margin-top: 4px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #315f9f, var(--navy-dark));
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.success-message {
+  padding: 22px;
+  border: 1px solid #bcdcb8;
+  border-radius: 16px;
+  background: #effbec;
+  color: #32652d;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .hero {
+    min-height: 500px;
+    padding: 90px 18px 90px;
+    background-position: 62% top;
+  }
+
+  .language-switcher {
+    top: 18px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .language-switcher button {
+    min-width: 58px;
+    padding: 10px 13px;
+  }
+
+  .church-logo {
+    width: 190px;
+    margin-top: 10px;
+  }
+
+  .hero-copy {
+    margin-top: 16px;
+  }
+
+  .hero-copy h1 {
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+  }
+
+  .content-card {
+    width: min(100% - 20px, 620px);
+    margin-top: -62px;
+    padding: 24px 16px;
+    border-radius: 28px;
+  }
+
+  .service-row {
+    grid-template-columns: 58px 1fr auto;
+    gap: 12px;
+    min-height: 98px;
+    padding: 14px;
+    border-radius: 19px;
+  }
+
+  .service-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 18px;
+    font-size: 1.7rem;
+  }
+
+  .service-name strong {
+    font-size: 0.9rem;
+  }
+
+  .service-name span {
+    font-size: 0.79rem;
+  }
+
+  .service-time {
+    gap: 4px;
+    padding-left: 12px;
+  }
+
+  .service-time strong {
+    font-size: clamp(2.25rem, 11vw, 3.2rem);
+  }
+
+  .service-time span {
+    font-size: 0.9rem;
+  }
+
+  .directions-button {
+    min-height: 86px;
+    padding: 17px 18px;
+    gap: 13px;
+  }
+
+  .directions-button strong {
+    font-size: 0.9rem;
+  }
+
+  .directions-button small {
+    font-size: 0.78rem;
+  }
+
+  .links-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .link-card {
+    min-height: 112px;
+  }
+
+  .about-card {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+    text-align: center;
+  }
+
+  .about-icon {
+    width: 72px;
+    height: 72px;
+    margin: auto;
+    font-size: 2.4rem;
+  }
+
+  .closing-card {
+    padding: 30px 15px;
+  }
+
+  .contact-modal {
+    padding: 28px 20px;
+    border-radius: 23px;
+  }
+}
+
+@media (max-width: 430px) {
+  .section-heading h2 {
+    font-size: 2.15rem;
+  }
+
+  .service-row {
+    grid-template-columns: 46px 1fr auto;
+    gap: 9px;
+    padding: 12px 10px;
+  }
+
+  .service-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 15px;
+    font-size: 1.35rem;
+  }
+
+  .service-name strong {
+    font-size: 0.76rem;
+  }
+
+  .service-name span {
+    font-size: 0.7rem;
+  }
+
+  .service-time {
+    padding-left: 8px;
+  }
+
+  .service-time strong {
+    font-size: 2.15rem;
+  }
+
+  .service-time span {
+    font-size: 0.72rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
