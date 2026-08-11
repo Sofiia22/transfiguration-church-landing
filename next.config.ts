@@ -1,11 +1,13 @@
 import type { NextConfig } from "next";
 
 const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+const isNetlify = process.env.NETLIFY === "true";
+const isStaticHosting = isGitHubPages || isNetlify;
 const repositoryName = "transfiguration-church-landing";
 const basePath = isGitHubPages ? `/${repositoryName}` : "";
 
 const nextConfig: NextConfig = {
-  ...(isGitHubPages
+  ...(isStaticHosting
     ? {
         output: "export",
         basePath,
