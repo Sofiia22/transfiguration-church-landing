@@ -542,6 +542,18 @@ textarea:focus-visible {
   gap: 16px;
 }
 
+.contact-modal .honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .contact-modal label {
   display: grid;
   gap: 7px;
@@ -582,6 +594,22 @@ textarea:focus-visible {
   font-weight: 700;
   letter-spacing: 0.06em;
   cursor: pointer;
+}
+
+.contact-modal form button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.form-error {
+  padding: 13px 14px;
+  border: 1px solid #efb1ad;
+  border-radius: 13px;
+  background: #fff1f0;
+  color: #8b2520;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  text-align: center;
 }
 
 .success-message {

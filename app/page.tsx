@@ -44,7 +44,9 @@ const translations = {
     emailField: "Email address",
     message: "Your message",
     send: "Send message",
-    sent: "Thank you! Your message is ready to be sent.",
+    sending: "Sending…",
+    sent: "Thank you! Your message has been sent.",
+    sendError: "We couldn’t send your message. Please try again or email us directly.",
     close: "Close",
   },
   uk: {
@@ -77,7 +79,10 @@ const translations = {
     emailField: "Електронна адреса",
     message: "Ваше повідомлення",
     send: "Надіслати",
-    sent: "Дякуємо! Ваше повідомлення готове до відправлення.",
+    sending: "Надсилаємо…",
+    sent: "Дякуємо! Ваше повідомлення надіслано.",
+    sendError:
+      "Не вдалося надіслати повідомлення. Спробуйте ще раз або напишіть нам на email.",
     close: "Закрити",
   },
   ru: {
@@ -110,7 +115,10 @@ const translations = {
     emailField: "Электронная почта",
     message: "Ваше сообщение",
     send: "Отправить",
-    sent: "Спасибо! Ваше сообщение готово к отправке.",
+    sending: "Отправляем…",
+    sent: "Спасибо! Ваше сообщение отправлено.",
+    sendError:
+      "Не удалось отправить сообщение. Попробуйте ещё раз или напишите нам на email.",
     close: "Закрыть",
   },
 };
@@ -121,6 +129,8 @@ export default function Home() {
   const [language, setLanguage] = useState<Language>("en");
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const text = translations[language];
 
@@ -137,9 +147,43 @@ export default function Home() {
     return () => window.removeEventListener("keydown", closeWithEscape);
   }, [language]);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setIsSent(true);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/transfigurationbaptistchurch01@gmail.com",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...Object.fromEntries(formData.entries()),
+            _url: window.location.href,
+          }),
+        },
+      );
+
+      const result = (await response.json()) as { success?: boolean | string };
+
+      if (!response.ok || result.success === false || result.success === "false") {
+        throw new Error("Form submission failed");
+      }
+
+      form.reset();
+      setIsSent(true);
+    } catch {
+      setSubmitError(text.sendError);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -295,6 +339,7 @@ export default function Home() {
             type="button"
             onClick={() => {
               setIsSent(false);
+              setSubmitError("");
               setIsContactOpen(true);
             }}
           >
@@ -360,6 +405,21 @@ export default function Home() {
               <div className="success-message">{text.sent}</div>
             ) : (
               <form onSubmit={handleSubmit}>
+                <input
+                  className="honeypot"
+                  type="text"
+                  name="_honey"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New message from the church landing page"
+                />
+                <input type="hidden" name="_template" value="table" />
+
                 <label>
                   <span>{text.name}</span>
                   <input name="name" type="text" required />
@@ -375,7 +435,15 @@ export default function Home() {
                   <textarea name="message" rows={5} required />
                 </label>
 
-                <button type="submit">{text.send}</button>
+                {submitError && (
+                  <div className="form-error" role="alert">
+                    {submitError}
+                  </div>
+                )}
+
+                <button type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? text.sending : text.send}
+                </button>
               </form>
             )}
           </section>
