@@ -34,7 +34,7 @@ const translations = {
     questionsText: "We’d love to help",
     aboutTitle: "About Our Church",
     about:
-      "We are a loving church family passionate about knowing God, serving people, and sharing the hope of Jesus Christ. Everyone is welcome here.",
+      "Welcome to Transfiguration Slavic Baptist Church! We are Christ-centered church located in Lighthouse Baptist Church. Our mission is to glorify God, share the gospel and help people grow in their faith. Our services and events are in the Russian language.",
     closing: "See you at church!",
     blessing: "God bless you!",
     contactTitle: "Contact Us",
@@ -46,16 +46,17 @@ const translations = {
     send: "Send message",
     sending: "Sending…",
     sent: "Thank you! Your message has been sent.",
-    sendError: "We couldn’t send your message. Please try again or email us directly.",
+    sendError:
+      "We couldn’t send your message. Please try again or email us directly.",
     close: "Close",
   },
   uk: {
     welcome: "Ласкаво просимо",
     church: "TRANSFIGURATION SLAVIC BAPTIST CHURCH",
-    serviceLabel: "РОЗКЛАД БОГОСЛУЖІНЬ",
+    serviceLabel: "РОЗКЛАД СЛУЖІНЬ",
     gather: "Час наших зустрічей",
     sunday: "Неділя",
-    sundayService: "Недільне богослужіння",
+    sundayService: "Недільне служіння",
     friday: "П’ятниця",
     fridayService: "Молодіжне служіння та вивчення Біблії",
     directions: "Як нас знайти",
@@ -69,7 +70,7 @@ const translations = {
     questionsText: "Ми раді допомогти",
     aboutTitle: "Про нашу церкву",
     about:
-      "Ми — християнська церква, яка прагне пізнавати Бога, служити людям і ділитися надією в Ісусі Христі. Запрошуємо вас стати частиною нашої церковної родини.",
+      "Ласкаво просимо Transfiguration Slavic Baptist Church. Ми — євангельська церква, яка проводить служіння в приміщенні Lighthouse Baptist Church. Наша місія — прославляти Бога, ділитися Доброю звісткою та допомагати людям зростати у вірі. Усі наші служіння та заходи проходять російською мовою.",
     closing: "До зустрічі в церкві!",
     blessing: "Божих благословінь!",
     contactTitle: "Зв’яжіться з нами",
@@ -88,10 +89,10 @@ const translations = {
   ru: {
     welcome: "Добро пожаловать",
     church: "TRANSFIGURATION SLAVIC BAPTIST CHURCH",
-    serviceLabel: "РАСПИСАНИЕ БОГОСЛУЖЕНИЙ",
-    gather: "БОГОСЛУЖЕНИЯ",
+    serviceLabel: "РАСПИСАНИЕ СЛУЖЕНИЙ",
+    gather: "СЛУЖЕНИЕ",
     sunday: "Воскресенье",
-    sundayService: "Воскресное богослужение",
+    sundayService: "Воскресное служение",
     friday: "Пятница",
     fridayService: "Молодёжное служение и изучение Библии",
     directions: "Как нас найти",
@@ -105,7 +106,7 @@ const translations = {
     questionsText: "Мы рады помочь",
     aboutTitle: "О нашей церкви",
     about:
-      "Мы — христианская церковь, где люди вместе познают Бога, служат друг другу и делятся надеждой, которую мы имеем в Иисусе Христе. Будем рады видеть вас среди нас!",
+      "Добро пожаловать Transfiguration Slavic Baptist Church. Мы — церковь, в центре которой находится Христос, и проводим наши служение в здании Lighthouse Baptist Church. Наша миссия — прославлять Бога, делиться Благой вестью и помогать людям возрастать в вере. Все наши служение и мероприятия проходят на русском языке.",
     closing: "До встречи в церкви!",
     blessing: "Божьих благословений!",
     contactTitle: "Свяжитесь с нами",
@@ -173,7 +174,11 @@ export default function Home() {
 
       const result = (await response.json()) as { success?: boolean | string };
 
-      if (!response.ok || result.success === false || result.success === "false") {
+      if (
+        !response.ok ||
+        result.success === false ||
+        result.success === "false"
+      ) {
         throw new Error("Form submission failed");
       }
 
